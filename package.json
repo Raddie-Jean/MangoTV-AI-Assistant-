@@ -1,0 +1,13 @@
+{
+  "name": "mangotv-ai-assistant-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MangoTV AI assistant interactive static prototype",
+  "scripts": {
+    "start": "node scripts/serve.cjs",
+    "test": "node tests/release.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.65.0"
+  }
+}

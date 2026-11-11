@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>芒小果 · 交互说明与页面入口</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f1f6fd;
+        color: #273b63;
+        font:
+          16px/1.8 -apple-system,
+          "PingFang SC",
+          sans-serif;
+      }
+      main {
+        max-width: 1100px;
+        margin: auto;
+        padding: 64px 32px 96px;
+      }
+      .eyebrow {
+        color: #7388b4;
+        font-size: 13px;
+        letter-spacing: 2px;
+      }
+      h1 {
+        font-size: 38px;
+        line-height: 1.3;
+        margin: 12px 0 16px;
+      }
+      h2 {
+        font-size: 24px;
+        margin: 48px 0 16px;
+      }
+      p {
+        margin: 10px 0;
+      }
+      a {
+        color: #5268bc;
+      }
+      .intro {
+        max-width: 720px;
+        color: #697b9b;
+      }
+      .entries {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin: 32px 0 48px;
+      }
+      .entry {
+        background: white;
+        border: 1px solid #dbe5f5;
+        border-radius: 12px;
+        padding: 24px;
+        text-decoration: none;
+        display: grid;
+        grid-template-columns: 1fr auto;
+      }
+      .entry strong {
+        font-size: 20px;
+      }
+      .entry span {
+        grid-column: 1;
+        color: #7487a5;
+        font-size: 14px;
+      }
+      .entry b {
+        grid-column: 2;
+        grid-row: 1/3;
+        align-self: center;
+        font-size: 14px;
+      }
+      .entry:hover {
+        border-color: #8c9fdf;
+        box-shadow: 0 4px 16px #6c86b414;
+      }
+      .table-wrap {
+        overflow: auto;
+        background: white;
+        border: 1px solid #dde6f4;
+        border-radius: 10px;
+        margin: 20px 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 14px;
+        min-width: 600px;
+      }
+      td {
+        padding: 14px 18px;
+        border-bottom: 1px solid #e5ebf5;
+        vertical-align: top;
+      }
+      tr:first-child {
+        font-weight: 600;
+        background: #eaf0fc;
+      }
+      td:first-child {
+        width: 20%;
+      }
+      .list {
+        padding-left: 12px;
+      }
+      .shots {
+        display: flex;
+        gap: 24px;
+        margin: 28px 0;
+      }
+      .shots figure {
+        margin: 0;
+        max-width: 240px;
+      }
+      .shots img {
+        width: 100%;
+        border: 1px solid #d6e1f3;
+        border-radius: 20px;
+      }
+      .shots figcaption {
+        text-align: center;
+        font-size: 13px;
+        color: #7385a2;
+      }
+      @media (max-width: 650px) {
+        main {
+          padding: 32px 20px;
+        }
+        .entries {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 29px;
+        }
+        .shots {
+          gap: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="eyebrow">MANGO · INTERACTION PROTOTYPE</div>
+      <h1>芒小果对话空间<br />页面入口与交互说明</h1>
+      <p class="intro">
+        从入口直接体验各个状态，或按下方说明完整走一遍对话与任务流程。人物保持调亮后的上半身循环动画，原有设计与无箭头话题栏保留。
+      </p>
+      <p>
+        <a href="docs/interaction-spec.md">下载 Markdown 说明</a> ·
+        <a
+          href="https://www.figma.com/design/ZZKPqmQFJoj1xMIEOhEsT5/?node-id=151-1888"
+          >查看 Figma 交付画布</a
+        >
+      </p>
+      <div class="entries">
+        <a class="entry" href="index.html" target="_blank"
+          ><strong>开场页</strong><span>人物循环与 OOTD 开场</span
+          ><b>打开 →</b></a
+        ><a class="entry" href="index.html?scene=sent" target="_blank"
+          ><strong>用户已发送</strong><span>对应 Figma 第二张交付状态</span
+          ><b>打开 →</b></a
+        ><a class="entry" href="index.html?scene=outfit" target="_blank"
+          ><strong>完整任务流程</strong><span>对话 → 三步执行 → 推荐结果</span
+          ><b>打开 →</b></a
+        ><a class="entry" href="index.html?scene=history" target="_blank"
+          ><strong>历史对话</strong><span>定位消息与开始新对话</span
+          ><b>打开 →</b></a
+        ><a class="entry" href="index.html?scene=roles" target="_blank"
+          ><strong>聊天伙伴</strong><span>角色选择与返回对话</span
+          ><b>打开 →</b></a
+        ><a class="entry" href="index.html?scene=mood" target="_blank"
+          ><strong>今日心绪</strong><span>卡片、问答与记录心情</span
+          ><b>打开 →</b></a
+        ><a class="entry" href="index.html?scene=notes" target="_blank"
+          ><strong>心情笔记</strong><span>输入与本地保存</span><b>打开 →</b></a
+        ><a class="entry" href="index.html?scene=desktop" target="_blank"
+          ><strong>桌面入口</strong><span>串联功能分支</span><b>打开 →</b></a
+        >
+      </div>
+      <div class="shots">
+        <figure>
+          <img src="demo-preview.png" alt="开场页面实际截图" />
+          <figcaption>开场状态</figcaption>
+        </figure>
+        <figure>
+          <img src="demo-sent.png" alt="用户已发送状态实际截图" />
+          <figcaption>用户已发送状态</figcaption>
+        </figure>
+      </div>
+      <p>
+        本说明对应
+        Figma「交付文件」画布（151:1888）中的开场状态（151:1889）、用户发送状态（151:2035），以及现有可执行
+        Demo。画布左侧站立图（151:2180）为独立视觉参考，目前未用整张截图替代可交互页面。
+      </p>
+      <h2>1. 页面流转</h2>
+      <p>
+        开场页面 → 横滑底部话题 → 穿搭推荐 → 用户提问 → 芒小果回应 → 执行任务 →
+        三套搭配结果。
+      </p>
+      <p>
+        其他分支：上桌面 → 今日心绪 / 心情笔记 / 历史对话 /
+        聊天伙伴；查看历史提示或顶部下拉 → 历史对话；角色推荐卡 → 聊天伙伴选择。
+      </p>
+      <h2>2. 可直接打开的状态</h2>
+      <div class="table-wrap">
+        <table>
+          <tr>
+            <td>页面或状态</td>
+            <td>入口</td>
+            <td>可继续操作</td>
+          </tr>
+          <tr>
+            <td>开场</td>
+            <td>index.html</td>
+            <td>横滑话题、输入、上桌面</td>
+          </tr>
+          <tr>
+            <td>用户已发送</td>
+            <td>index.html?scene=sent</td>
+            <td>开始执行穿搭推荐</td>
+          </tr>
+          <tr>
+            <td>完整任务演示</td>
+            <td>index.html?scene=outfit</td>
+            <td>自动回应和执行，支持停止</td>
+          </tr>
+          <tr>
+            <td>历史对话</td>
+            <td>index.html?scene=history</td>
+            <td>开始新对话；有记录时跳转对应消息</td>
+          </tr>
+          <tr>
+            <td>聊天伙伴</td>
+            <td>index.html?scene=roles</td>
+            <td>选择伙伴并返回对话</td>
+          </tr>
+          <tr>
+            <td>今日心绪</td>
+            <td>index.html?scene=mood</td>
+            <td>发起心绪问答、记下心情</td>
+          </tr>
+          <tr>
+            <td>心情笔记</td>
+            <td>index.html?scene=notes</td>
+            <td>输入、保存、关闭</td>
+          </tr>
+          <tr>
+            <td>桌面入口</td>
+            <td>index.html?scene=desktop</td>
+            <td>进入四个功能分支、重播人物动画</td>
+          </tr>
+        </table>
+      </div>
+      <p>
+        「用户已发送」增加继续按钮作为原型演示入口，方便单独停留核对 Figma
+        第二状态。正常从穿搭主题进入时自动连续执行，无需额外点击。
+      </p>
+      <h2>3. 触发与反馈</h2>
+      <div class="table-wrap">
+        <table>
+          <tr>
+            <td>区域</td>
+            <td>用户操作</td>
+            <td>页面反馈与规则</td>
+          </tr>
+          <tr>
+            <td>人物</td>
+            <td>进入、停留</td>
+            <td>
+              透明 GIF
+              以固定上半身窗口持续循环；完整周期约8.04秒。人物层级高于标签，播放不挤动布局。
+            </td>
+          </tr>
+          <tr>
+            <td>话题栏</td>
+            <td>横滑、滚轮，或聚焦栏后按左右键</td>
+            <td>横向移动；不显示右箭头。滑出「穿搭推荐」后点击。</td>
+          </tr>
+          <tr>
+            <td>穿搭推荐</td>
+            <td>点击</td>
+            <td>选中话题，添加用户提问，再逐字显示芒小果回应。</td>
+          </tr>
+          <tr>
+            <td>普通输入</td>
+            <td>输入后回车或点击发送</td>
+            <td>
+              空白内容不发送；中文输入法组合阶段不提前发送；显示消息并自动滚动。
+            </td>
+          </tr>
+          <tr>
+            <td>生成中</td>
+            <td>点击方形停止按钮</td>
+            <td>
+              文本回复停止；任务执行中转为暂停状态。生成中不启动第二个任务。
+            </td>
+          </tr>
+          <tr>
+            <td>任务</td>
+            <td>自动推进</td>
+            <td>
+              理解偏好、筛选品牌方向、组合搭配建议，每步约1.4秒，更新勾选和完成数。
+            </td>
+          </tr>
+          <tr>
+            <td>暂停任务</td>
+            <td>点击继续生成</td>
+            <td>从任务第一步重新执行，不重复发送用户提问。</td>
+          </tr>
+          <tr>
+            <td>任务完成</td>
+            <td>自动</td>
+            <td>显示三套搭配的配色、单品组合和品牌参考。</td>
+          </tr>
+          <tr>
+            <td>推荐结果</td>
+            <td>换一组搭配</td>
+            <td>发起新一轮模拟任务，追加另一组搭配。</td>
+          </tr>
+          <tr>
+            <td>推荐结果</td>
+            <td>调整偏好</td>
+            <td>
+              打开偏好选项，选择后携带该偏好重新发起任务；当前结果仍为预置示例集合。
+            </td>
+          </tr>
+          <tr>
+            <td>消息</td>
+            <td>复制 / 赞</td>
+            <td>复制文本或切换点赞状态；复制被浏览器限制时显示提示。</td>
+          </tr>
+          <tr>
+            <td>历史</td>
+            <td>点击提示，或在对话顶部向下拉超过90px</td>
+            <td>打开历史面板；点击历史提问定位消息。</td>
+          </tr>
+          <tr>
+            <td>开始新对话</td>
+            <td>点击</td>
+            <td>
+              结束当前生成，清空当前演示消息并显示新开场。不删除原始素材。
+            </td>
+          </tr>
+          <tr>
+            <td>角色</td>
+            <td>点击推荐卡或桌面伙伴入口</td>
+            <td>
+              选择芒小果、光屿或灵汐；更新名称、头像和欢迎区。返回芒小果时恢复循环动画。
+            </td>
+          </tr>
+          <tr>
+            <td>心绪卡</td>
+            <td>点击日期卡或桌面今日心绪</td>
+            <td>查看卡片，可继续心绪问答或写笔记。</td>
+          </tr>
+          <tr>
+            <td>心情笔记</td>
+            <td>输入并保存</td>
+            <td>保存到当前浏览器 localStorage，关闭后提示成功。</td>
+          </tr>
+          <tr>
+            <td>辅助面板</td>
+            <td>点击关闭、遮罩或 Escape</td>
+            <td>返回当前对话；键盘焦点返回入口，Tab 在面板内循环。</td>
+          </tr>
+        </table>
+      </div>
+      <h2>4. 动画与视觉约束</h2>
+      <p class="list">
+        •
+        以750×1624设计坐标布局，桌面预览最大宽390px，手机最大宽430px；同时按窗口可用高度等比适配，保持完整页面与底部输入区可见。短屏设备允许两侧留白，桌面居中显示。
+      </p>
+      <p class="list">
+        • 人物槽位坐标 x358、y237，尺寸301×271；GIF源裁切
+        x55、y13、宽282、高254，所有帧使用相同裁切，不逐帧自动缩放。
+      </p>
+      <p class="list">
+        • 页面显示层使用
+        brightness(1.12)、contrast(.98)、saturate(1.02)，原始GIF不重编码；保留193帧及透明度。
+      </p>
+      <p class="list">
+        • GIF加载失败使用原静态图。人物高于三个标签，卡片和对话不随动画移位。
+      </p>
+      <p class="list">
+        • 输入框在底部，长消息与任务在对话区域内滚动。手机软键盘仍需真机检验。
+      </p>
+      <h2>5. 原型边界</h2>
+      <p class="list">
+        •
+        对话、品牌方向和任务进度由本地脚本模拟，不连接真实AI或商品搜索，也不执行购买。
+      </p>
+      <p class="list">
+        • 「上桌面」是本Demo内部功能入口，不触发系统添加到桌面。
+      </p>
+      <p class="list">
+        •
+        辅助面板是基于当前视觉体系补充的原型，没有对应Figma定稿时不宣称逐像素还原。
+      </p>
+      <p class="list">
+        •
+        每次打开默认从开场演示，历史面板读取本次页面中的消息；笔记在当前浏览器持久保存。当前消息会写入独立存储键，但不会在刷新时自动恢复。
+      </p>
+      <h2>6. 验收顺序</h2>
+      <p>
+        1. 打开默认页面，确认人物循环、标签层级、AI图标圆形边缘及无话题箭头。
+      </p>
+      <p>2. 横滑话题，点击穿搭推荐，确认用户消息与人物回复按顺序出现。</p>
+      <p>3. 任务执行中停止并继续，确认状态恢复、用户提问不重复。</p>
+      <p>4. 检查三套结果，体验换一组和调整偏好。</p>
+      <p>5. 进入历史、伙伴、心绪、笔记，检查关闭及返回对话。</p>
+      <p>6. 分别打开开场和已发送状态，对照Figma的两张交付画面。</p>
+      <h2>7. 欢迎区动效细节（最新调整）</h2>
+      <p class="list">
+        •
+        人物较前版向左移16个设计像素；保持301×271槽位及统一GIF裁切，不逐帧缩放。
+      </p>
+      <p class="list">
+        •
+        人物底部收起7个设计像素，与卡片分隔线对齐，并用4像素渐隐柔化衔接。循环与人物高于标签的层级保持不变。
+      </p>
+      <p class="list">
+        •
+        欢迎文案按约65ms/字依次出现，保留三行布局和紫色「芒小果」强调。进入页面、重播欢迎动画和切换角色时重新触发，不随GIF每轮循环重复打字。
+      </p>
+      <p class="list">
+        • 脑洞达人、小太阳、ENFP
+        标签分别以4.8秒、5.6秒、6.2秒周期轻微浮动，幅度4–5个设计像素，旋转幅度约0.8度，错开开始相位。
+      </p>
+      <p class="list">
+        •
+        系统减少动态效果开启时，文案立即完整显示，三个标签停止微动。原GIF仍沿用用户要求的持续循环。
+      </p>
+    </main>
+  </body>
+</html>
