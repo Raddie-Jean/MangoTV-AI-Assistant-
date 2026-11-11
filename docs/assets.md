@@ -7,3 +7,7 @@
 - `assets/noto-*.woff2`：Noto Sans SC 的页面文字子集；Noto 字体遵循其 SIL Open Font License。参考 https://github.com/notofonts/noto-cjk 。
 
 本地演示不采集用户信息；心情笔记与演示消息只写入当前浏览器 localStorage。仓库不包含原始桌面路径、账户密钥、私人录屏或求职资料。
+
+## 网页加载版本
+
+源 PNG 和 GIF 均保留不动。`assets/web/` 为相同图像的 WebP 网页版本，共约455KB；原PNG约17.5MB。`welcome-web.webm` 为原透明动画的网页传输版本，约864KB，时长8.042秒，保留450×600画布与透明通道。Chrome优先播放WebM，不支持的浏览器回退原GIF；页面仍采用同一裁切、亮度和层级。

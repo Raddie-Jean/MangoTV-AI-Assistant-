@@ -32,7 +32,7 @@
 | [app.js](app.js) | 对话、话题拖动、任务状态和面板流转 |
 | [character-config.js](character-config.js) | 人物 GIF、循环与裁切参数 |
 | [interaction-guide.html](interaction-guide.html) | 八个可直接打开的状态及交互说明 |
-| [assets/](assets/) | 当前版本的本地图片、字体与动画 |
+| [assets/](assets/) | 原始图片、字体、GIF及网页传输版本 |
 | [docs/](docs/) | 交互规格、部署、素材与验收说明 |
 | [tests/](tests/) | 浏览器交付检查 |
 
@@ -64,6 +64,6 @@ npm test
 
 - 对话、品牌参考和任务进度由本地脚本模拟，不连接真实 AI、搜索、购买或账号服务。
 - 桌面入口是 Demo 内部功能面板，不修改系统桌面。
-- 人物 GIF 保留原始帧和透明度，采用固定上半身裁切；显示层调亮，不重编码。
+- 原始人物 GIF 保留不动；网页优先加载轻量透明 WebM，不支持时回退 GIF，采用同一上半身裁切与调亮。
 - 手机短屏会整体等比缩小，两侧可能留白；系统软键盘行为仍需真机检验。
 - Figma 及提供的素材用于本次原型展示。素材不视为开源许可，使用范围详见 [素材说明](docs/assets.md)。

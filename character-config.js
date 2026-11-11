@@ -1,5 +1,6 @@
 window.MANGO_CHARACTER_CONFIG = {
-  poster: "assets/v5/img15.png",
+  poster: "assets/web/img15.webp",
+  video: "assets/character/welcome-web.webm",
   gif: "assets/character/welcome-source.gif",
   loop: true, // The original GIF declares infinite looping.
   durationMs: 4000, // Used only when loop is false.

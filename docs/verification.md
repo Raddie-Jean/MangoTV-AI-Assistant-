@@ -24,3 +24,7 @@
 `npm install` → `npx playwright install chromium` → `npm test`。
 
 `tests/release.cjs` 为可复用的主流程检查；本次另执行了 Chrome 原生触摸事件模拟，确认横滑不会触发主题发送。
+
+## 网页传输优化
+
+原始PNG约17.5MB，网页WebP约455KB；原GIF约11.8MB，透明WebM约885KB。原文件保留，网页版本已在Chrome检查透明背景、8.042秒时长、循环及相同裁切位置；不支持的浏览器使用原GIF回退。

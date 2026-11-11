@@ -1404,7 +1404,7 @@ textarea:focus-visible {
   flex-direction: row-reverse;
 }
 .message.user .avatar {
-  background: url("assets/v5/imgAi1.png") -648px -973px / 750px 1624px;
+  background: url("assets/web/imgAi1.webp") -648px -973px / 750px 1624px;
   border-radius: 50%;
 }
 .message.user .avatar > div {
@@ -2295,4 +2295,24 @@ body.phone-keyboard {
 .history-cue > [data-node-id="23:92"] {
   top: 34px;
   transform: translateY(var(--history-scroll, 0px));
+}
+
+/* Web delivery uses a lighter alpha video; original GIF remains the fallback. */
+#character-video {
+  display: none;
+  position: absolute;
+  inset: auto;
+  left: var(--gif-left);
+  top: var(--gif-top);
+  width: var(--gif-width);
+  height: var(--gif-height);
+  max-width: none;
+  object-fit: fill;
+  filter: brightness(1.12) contrast(0.98) saturate(1.02);
+}
+#character-animation-slot[data-video="true"] #character-video {
+  display: block;
+}
+#character-animation-slot[data-video="true"] #character-media {
+  visibility: hidden;
 }

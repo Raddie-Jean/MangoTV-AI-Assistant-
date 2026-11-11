@@ -11,12 +11,12 @@ const welcome = document.createElement("div");
 welcome.className = "welcome";
 welcome.append(hero);
 scroll.append(welcome);
-// The history cue belongs to the scrollable welcome content, not the fixed nav.
+// The history cue is synchronized with scrolling below the navigation.
 
 for (const id of ["113:1272", "128:1869", "113:1274"]) {
   const badge = node(id);
   const top = parseFloat(getComputedStyle(badge).top);
-  badge.style.top = top - 185 + "px";
+  badge.style.top = top - 221 + "px";
   welcome.append(badge);
 }
 const messages = document.createElement("div");
@@ -36,7 +36,7 @@ node("23:138").hidden = true;
 const form = document.createElement("form");
 form.className = "composer";
 form.innerHTML =
-  '<img src="assets/v5/img7.png" alt="" class="composer-star"><input aria-label="发送消息给芒小果" placeholder="发送消息给芒小果" autocomplete="off" enterkeyhint="send"><button type="submit" aria-label="发送消息" disabled>↑</button>';
+  '<img src="assets/web/img7.webp" alt="" class="composer-star"><input aria-label="发送消息给芒小果" placeholder="发送消息给芒小果" autocomplete="off" enterkeyhint="send"><button type="submit" aria-label="发送消息" disabled>↑</button>';
 footer.append(form);
 const input = form.querySelector("input"),
   send = form.querySelector("button");
@@ -93,7 +93,9 @@ function bubble(message) {
     portrait.replaceChildren();
     const pic = document.createElement("img");
     pic.src =
-      message.role === "光屿" ? "assets/v5/img18.png" : "assets/v5/img21.png";
+      message.role === "光屿"
+        ? "assets/web/img18.webp"
+        : "assets/web/img21.webp";
     pic.alt = message.role;
     pic.style.cssText =
       "width:72px;height:72px;object-fit:cover;border-radius:50%;background:#edfaff";
@@ -335,7 +337,7 @@ function mood() {
   const c = container();
   c.className = "mood-card";
   c.innerHTML =
-    '<img src="assets/v5/imgChatGptImage202611111335486.png" alt="心绪小伙伴"><p class="eyebrow">今日心绪 · 给自己一点时间</p><h3>你的能量，正在慢慢回到身边</h3><p>不用急着变得更好。今天，试着留十分钟给自己，做一件让心情轻盈的小事。</p>';
+    '<img src="assets/web/imgChatGptImage202611111335486.webp" alt="心绪小伙伴"><p class="eyebrow">今日心绪 · 给自己一点时间</p><h3>你的能量，正在慢慢回到身边</h3><p>不用急着变得更好。今天，试着留十分钟给自己，做一件让心情轻盈的小事。</p>';
   c.append(
     button("和芒小果聊聊", () => {
       close();
@@ -369,9 +371,9 @@ function notes() {
 function roles() {
   const c = container();
   [
-    ["芒小果", "assets/v5/img15.png", "ENFP · 小太阳 · 脑洞达人"],
-    ["光屿", "assets/v5/img18.png", "温柔陪伴 · 认真倾听"],
-    ["灵汐", "assets/v5/img21.png", "灵感搭子 · 轻松闲聊"],
+    ["芒小果", "assets/web/img15.webp", "ENFP · 小太阳 · 脑洞达人"],
+    ["光屿", "assets/web/img18.webp", "温柔陪伴 · 认真倾听"],
+    ["灵汐", "assets/web/img21.webp", "灵感搭子 · 轻松闲聊"],
   ].forEach(([name, img, desc]) => {
     const b = button(
       "",
@@ -463,6 +465,10 @@ desktopButton.setAttribute("aria-label", "上桌面");
 screen.append(desktopButton);
 
 function updateRoleHero() {
+  characterVideo.onloadeddata = null;
+  characterVideo.onerror = null;
+  characterVideo.pause();
+  character.dataset.video = "false";
   clearTimeout(entranceTimer);
   characterMedia.onload = null;
   characterMedia.onerror = null;
@@ -470,10 +476,10 @@ function updateRoleHero() {
   const pic = node("66:317").querySelector("img");
   pic.src =
     role === "光屿"
-      ? "assets/v5/img18.png"
+      ? "assets/web/img18.webp"
       : role === "灵汐"
-        ? "assets/v5/img21.png"
-        : "assets/v5/img15.png";
+        ? "assets/web/img21.webp"
+        : "assets/web/img15.webp";
   pic.style.objectFit = "contain";
   const greeting = node("58:299");
   greeting.style.fontSize = "28px";
@@ -502,14 +508,26 @@ const characterMedia = character.querySelector("img");
 character.id = "character-animation-slot";
 characterMedia.id = "character-media";
 const characterConfig = window.MANGO_CHARACTER_CONFIG || {};
-const staticCharacter = characterConfig.poster || "assets/v5/img15.png";
+const characterVideo = document.createElement("video");
+characterVideo.id = "character-video";
+characterVideo.muted = true;
+characterVideo.playsInline = true;
+characterVideo.loop = characterConfig.loop !== false;
+characterVideo.preload = "auto";
+characterVideo.setAttribute("aria-hidden", "true");
+character.append(characterVideo);
+const staticCharacter = characterConfig.poster || "assets/web/img15.webp";
 function showCharacterPoster() {
+  characterVideo.onloadeddata = null;
+  characterVideo.onerror = null;
+  characterVideo.pause();
+  character.dataset.video = "false";
   character.dataset.media = "poster";
   characterMedia.src = staticCharacter;
   characterMedia.alt = "芒小果";
   screen.dataset.phase = "ready";
 }
-function playEntrance() {
+function playEntrance(skipVideo = false) {
   animateWelcomeText();
   clearTimeout(entranceTimer);
   scroll.scrollTop = 0;
@@ -532,6 +550,30 @@ function playEntrance() {
     );
     character.style.setProperty("--gif-left", (-c.x / c.width) * 100 + "%");
     character.style.setProperty("--gif-top", (-c.y / c.height) * 100 + "%");
+  }
+  const isSafari =
+    /Safari/.test(navigator.userAgent) &&
+    !/Chrome|Chromium|CriOS/.test(navigator.userAgent);
+  if (
+    !skipVideo &&
+    characterConfig.video &&
+    !isSafari &&
+    characterVideo.canPlayType('video/webm; codecs="vp9"')
+  ) {
+    characterVideo.onloadeddata = () => {
+      characterVideo.onloadeddata = null;
+      character.dataset.video = "true";
+      character.dataset.media = frame?.crop ? "gif-cropped" : "gif";
+      screen.dataset.phase = "ready";
+      characterVideo.play().catch(() => playEntrance(true));
+    };
+    characterVideo.onerror = () => {
+      characterVideo.onerror = null;
+      playEntrance(true);
+    };
+    characterVideo.src = characterConfig.video;
+    characterVideo.load();
+    return;
   }
   characterMedia.onload = () => {
     characterMedia.onload = null;
@@ -562,10 +604,10 @@ track.className = "topic-track";
 track.tabIndex = 0;
 track.setAttribute("aria-label", "左右滑动切换主题");
 const topicItems = [
-  ["被治愈了", "imgChatGptImage202611111335486.png", "img11.svg"],
-  ["鸭梨大", "imgChatGptImage202611111335483.png", "img9.svg"],
-  ["citywalk", "imgChatGptImage202611111335482.png", "img10.svg"],
-  ["穿搭推荐", "imgChatGptImage202611111335484.png", "img11.svg"],
+  ["被治愈了", "imgChatGptImage202611111335486.webp", "img11.svg"],
+  ["鸭梨大", "imgChatGptImage202611111335483.webp", "img9.svg"],
+  ["citywalk", "imgChatGptImage202611111335482.webp", "img10.svg"],
+  ["穿搭推荐", "imgChatGptImage202611111335484.webp", "img11.svg"],
 ];
 for (const [label, icon, bg] of topicItems) {
   const b = button(
@@ -587,7 +629,7 @@ for (const [label, icon, bg] of topicItems) {
   b.setAttribute("aria-pressed", "false");
   b.style.backgroundImage = "url(assets/v5/" + bg + ")";
   b.innerHTML =
-    '<img src="assets/v5/' + icon + '" alt=""><span>' + label + "</span>";
+    '<img src="assets/web/' + icon + '" alt=""><span>' + label + "</span>";
   track.append(b);
 }
 topics.append(track);
@@ -649,7 +691,7 @@ function executeOutfit(query) {
   task.className = "outfit-task";
   task.setAttribute("aria-label", "穿搭推荐任务");
   task.innerHTML =
-    '<div class="task-heading"><img src="assets/v5/img7.png" alt=""><strong>正在为你寻找松弛感灵感</strong><span class="task-count">0/3</span></div><div class="task-tags"><span>慵懒休闲</span><span>宽松廓形</span><span>日常可穿</span></div><ol><li class="running">理解穿搭偏好 <small>整理风格与适用场景</small></li><li>筛选品牌方向 <small>对比基础款与设计风格</small></li><li>组合搭配建议 <small>生成可参考的日常方案</small></li></ol><p class="task-status" role="status">正在理解你的穿搭需求…</p>';
+    '<div class="task-heading"><img src="assets/web/img7.webp" alt=""><strong>正在为你寻找松弛感灵感</strong><span class="task-count">0/3</span></div><div class="task-tags"><span>慵懒休闲</span><span>宽松廓形</span><span>日常可穿</span></div><ol><li class="running">理解穿搭偏好 <small>整理风格与适用场景</small></li><li>筛选品牌方向 <small>对比基础款与设计风格</small></li><li>组合搭配建议 <small>生成可参考的日常方案</small></li></ol><p class="task-status" role="status">正在理解你的穿搭需求…</p>';
   messages.append(task);
   activeTask = { element: task, step: 0, query };
   bottom();
