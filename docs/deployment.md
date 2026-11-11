@@ -1,6 +1,10 @@
 # 部署与分享
 
-## GitHub Pages（推荐）
+## 当前部署
+
+已启用 GitHub Pages，发布源为 `main` 分支根目录，地址为 https://raddie-jean.github.io/MangoTV-AI-Assistant-/ 。后续提交到 main 自动更新。
+
+## 重新配置 GitHub Pages
 
 仓库为纯静态站点，不需要构建、API 密钥或后端。
 
@@ -9,7 +13,7 @@
 3. Branch 选择 **main**，目录选择 **/(root)**，保存。
 4. 等待 Pages 部署完成，以设置页面显示的最新地址为准。
 
-预计地址：`https://raddie-jean.github.io/MangoTV-AI-Assistant-/`。
+演示地址：`https://raddie-jean.github.io/MangoTV-AI-Assistant-/`。
 
 - 主 Demo：站点根地址。
 - 八状态入口与说明：`interaction-guide.html`。

@@ -9,7 +9,7 @@
 - [浏览全部源码](https://github.com/Raddie-Jean/MangoTV-AI-Assistant-)
 - [交互规格](docs/interaction-spec.md)
 
-> 在线地址需要仓库开启 GitHub Pages 后才可访问。首次发布配置见 [部署说明](docs/deployment.md)，部署成功后无需登录即可分享。
+> 已发布到 GitHub Pages，可直接分享在线链接。源码和部署设置见 [部署说明](docs/deployment.md)，验收情况见 [检查记录](docs/verification.md)。
 
 ![手机预览](docs/images/mobile-preview.png)
 

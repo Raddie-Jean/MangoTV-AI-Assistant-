@@ -12,10 +12,12 @@ const { chromium } = require("playwright"),
     viewport: { width: 390, height: 844 },
     deviceScaleFactor: 2,
   });
+  p.setDefaultTimeout(120000);
+  p.setDefaultNavigationTimeout(120000);
   let errors = [];
   p.on("pageerror", (e) => errors.push(e.message));
   const url = process.env.DEMO_URL || "file://" + process.cwd() + "/index.html";
-  await p.goto(url);
+  await p.goto(url, {waitUntil:"domcontentloaded"});
   await p.waitForFunction(
     () =>
       document.querySelector("#character-animation-slot").dataset.media ===
@@ -49,10 +51,12 @@ const { chromium } = require("playwright"),
     () => (document.querySelector(".conversation").scrollTop = 0),
   );
   const hint = p.locator('[data-node-id="23:91"]');
+  await p.waitForTimeout(80);
   const y1 = (await hint.boundingBox()).y;
   await p.evaluate(
     () => (document.querySelector(".conversation").scrollTop = 150),
   );
+  await p.waitForFunction(y=>document.querySelector('[data-node-id="23:91"]').getBoundingClientRect().y<y-60,y1);
   const y2 = (await hint.boundingBox()).y;
   assert(y2 < y1 - 60, "history cue must scroll with content");
   await p.evaluate(

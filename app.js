@@ -12,7 +12,7 @@ welcome.className = "welcome";
 welcome.append(hero);
 scroll.append(welcome);
 // The history cue belongs to the scrollable welcome content, not the fixed nav.
-welcome.append(node("23:91"), node("23:92"));
+
 for (const id of ["113:1272", "128:1869", "113:1274"]) {
   const badge = node(id);
   const top = parseFloat(getComputedStyle(badge).top);
@@ -75,7 +75,7 @@ function resize() {
   screen.style.transform = "scale(" + scale + ")";
   screen.style.height = h + "px";
   base.style.height = h + "px";
-  scroll.style.height = Math.max(120, h - 485) + "px";
+  scroll.style.height = Math.max(120, h - 521) + "px";
   footer.style.transform = "translateY(" + (h - 1624) + "px)";
   document.body.classList.toggle("phone-keyboard", keyboard);
 }
@@ -495,7 +495,7 @@ const character = node("66:317");
 // Share the welcome stacking context with badges; the character paints last.
 welcome.append(character);
 character.style.left = "358px";
-character.style.top = "52px";
+character.style.top = "16px";
 character.setAttribute("aria-label", "芒小果欢迎动画");
 let entranceTimer = null;
 const characterMedia = character.querySelector("img");
@@ -932,3 +932,14 @@ track.addEventListener(
   true,
 );
 track.addEventListener("dragstart", (e) => e.preventDefault());
+
+// Keep the original 44px navigation gap while the history cue follows scroll.
+const historyCue = document.createElement("div");
+historyCue.className = "history-cue";
+historyCue.append(node("23:91"), node("23:92"));
+screen.append(historyCue);
+function syncHistoryCue() {
+  historyCue.style.setProperty("--history-scroll", -scroll.scrollTop + "px");
+}
+scroll.addEventListener("scroll", syncHistoryCue, { passive: true });
+syncHistoryCue();

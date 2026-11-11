@@ -2267,3 +2267,32 @@ body.phone-keyboard {
   user-select: none;
   pointer-events: none;
 }
+/* Restore the original breathing room below the fixed navigation. */
+.conversation {
+  top: 221px;
+}
+.welcome {
+  height: 553px;
+}
+.welcome > [data-node-id="96:914"] {
+  top: -221px;
+}
+#screen > .history-cue {
+  position: absolute;
+  left: 0;
+  top: 185px;
+  width: 750px;
+  height: 55px;
+  overflow: clip;
+  z-index: 3;
+  pointer-events: none;
+}
+.history-cue > [data-node-id="23:91"] {
+  top: 19px;
+  transform: translateY(var(--history-scroll, 0px));
+  pointer-events: auto;
+}
+.history-cue > [data-node-id="23:92"] {
+  top: 34px;
+  transform: translateY(var(--history-scroll, 0px));
+}
