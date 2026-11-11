@@ -36,6 +36,10 @@
 | [docs/](docs/) | 交互规格、部署、素材与验收说明 |
 | [tests/](tests/) | 浏览器交付检查 |
 
+## 验收与下载
+
+已完成本地文件、HTTP静态站点和GitHub Pages线上验收，详见 [验收记录](docs/verification.md)。下载源码可点击仓库 **Code → Download ZIP**，其中包含原始素材与网页优化资源。
+
 ## 本地预览
 
 下载仓库 ZIP 后可直接用浏览器打开 `index.html`。推荐使用本地静态服务器，便于测试剪贴板等浏览器功能：
